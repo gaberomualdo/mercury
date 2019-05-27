@@ -16,6 +16,7 @@
         text-align: center;
         background-color: #efefef;
         color: #222;
+        min-height: 100vh;
     }
     div.container {
         background-color: #fff;
@@ -159,15 +160,21 @@
         link.click();
     }
 
+    // Open URI Function
+    function openURI(uri) {
+        var link = document.createElement("a");
+        link.href = uri;
+        link.click();
+    }
+
     window.onload = function(){
         // check if URL is a download URL
-        var pin = new URLSearchParams(window.location.search).keys().get('d');
+        var pin = new URLSearchParams(window.location.search).get('d');
         if(pin) {
             firebase.database().ref(pin).once("value", function(snapshot){
                 file = snapshot.val();
                 if(file){
                     downloadURI(file.contents, file.name);
-                    window.close();
                 }
             });
         }
