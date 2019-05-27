@@ -159,6 +159,20 @@
         link.click();
     }
 
+    window.onload = function(){
+        // check if URL is a download URL
+        var pin = new URLSearchParams(window.location.search).keys().get('d');
+        if(pin) {
+            firebase.database().ref(pin).once("value", function(snapshot){
+                file = snapshot.val();
+                if(file){
+                    downloadURI(file.contents, file.name);
+                    window.close();
+                }
+            });
+        }
+    }
+
     </script>
 </body>
 </html>
