@@ -30,14 +30,9 @@
         box-sizing: border-box;
         text-align: left;
     }
-    @media (max-width: 450px) {
-        div.container {
-            width: 100;
-        }
-    }
     div.container > div.logo {
         display: block;
-        overflow: auto;
+        overflow: hidden;
         margin-bottom: 3rem;
         text-align: center;
     }
@@ -50,10 +45,11 @@
     div.container > div.logo > p {
         font-size: 0.9rem;
         line-height: 1.25;
+
     }
     div.container > section {
         display: block;
-        overflow: auto;
+        overflow: hidden;
         margin-bottom: 2.75rem;
     }
     div.container > section > h2 {
@@ -90,6 +86,25 @@
     div.container > section > button:hover, div.container > section > label:hover {
         background-color: #222;
         color: #fff;
+    }
+    div.container > section.share > p {
+        line-height: 1.5;
+        margin-bottom: 0.375rem;
+    }
+    a {
+        color: #27f;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+        color: #23f;
+    }
+    @media (max-width: 450px) {
+        div.container {
+            width: 100%;
+            padding: 1.5rem;
+            border: none;
+        }
     }
     </style>
     <link rel="shortcut icon" href="icon.png">
@@ -147,7 +162,7 @@
                 pushToDB(file, name);
             }else{
                 firebase.database().ref(randomPin).set({ contents: file, name: name });
-                document.getElementById("fileInputLabel").outerHTML = "<p><strong>File Shared with Pin: </strong>" + randomPin + "</p>";
+                document.getElementById("fileInputLabel").outerHTML = "<p><strong>File Shared with Pin: </strong>" + randomPin + "</p><p><strong>File Shared at URL:</strong> <a href='https://xtrp.github.io/Mercury/?d=" + randomPin + "'>xtrp.github.io/m/?d=" + randomPin + "</a></p>";
             }
         });
     }
