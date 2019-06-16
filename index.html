@@ -92,6 +92,14 @@
         line-height: 1.5;
         margin-bottom: 0.375rem;
     }
+    div.container > section > p.terms {
+        line-height: 1.5;
+        font-size: 0.75rem;
+        display: block;
+        float: left;
+        clear: both;
+        margin-top: 0.75rem;
+    }
     a {
         color: #27f;
         text-decoration: none;
@@ -120,11 +128,13 @@
             <h2>Receive File</h2>
             <input type="text" placeholder="Enter File Pin..." id="pinInput">
             <button onclick="firebase.database().ref(document.getElementById('pinInput').value).once('value', function(snapshot){ file = snapshot.val(); if(file){ downloadURI(file.contents, file.name); } else { alert('Pin Not Found'); } });">Download</button>
+            <p class="terms">By clicking Download, you agree to our <a href="TERMS_and_LICENSE.txt" target="_blank">TERMS & LICENSE</a>.</p>
         </section>
         <section class="share">
             <h2>Share File</h2>
             <input type="file" accept="*" id="file" onchange="shareFile(event);">
             <label for="file" id="fileInputLabel">Choose a File to Share</label>
+            <p class="terms">By clicking Choose a File to Share, you agree to our <a href="TERMS_and_LICENSE.txt" target="_blank">TERMS & LICENSE</a>.</p>
         </section>
     </div>
     
